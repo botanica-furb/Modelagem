@@ -3,19 +3,19 @@ install.packages("ecospat")
 library(biomod2)
 library(ecospat)
 
-#antes de começar, importe seus dados de ocorrência em ".csv", sendo:
-# Uma coluna "id" com números que identifiquem seus pontos
+#antes de comeÃ§ar, importe seus dados de ocorrÃªncia em ".csv", sendo:
+# Uma coluna "id" com nÃºmeros que identifiquem seus pontos
 # Uma coluna "x" com longitudes e outra "y" com latitudes
-# Uma coluna indicando a presença da espécie (1) em cada coordenada.
+# Uma coluna indicando a presenÃ§a da espÃ©cie (1) em cada coordenada.
 
 DataSpecies <- Dicksonia.sellowiana #Nome do arquivo csv importado
-myRespName <- 'Dsellowiana'          #Título da coluna que indica a presença da espécie em cada coordenada
+myRespName <- 'Dsellowiana'          #TÃ­tulo da coluna que indica a presenÃ§a da espÃ©cie em cada coordenada
 myResp <- as.numeric(DataSpecies[,myRespName])
-myRespXY <- DataSpecies[,c("x","y")]            #"x" e "y" correspondem aos títulos das colunas longitude e latitude, respectivamente
+myRespXY <- DataSpecies[,c("x","y")]            #"x" e "y" correspondem aos tÃ­tulos das colunas longitude e latitude, respectivamente
 
 
-#Importando as varáveis ambientais que serão analisadas. 
-#Indique a pasta do seu computador em que as variáveis se encontram.
+#Importando as varÃ¡veis ambientais que serÃ£o analisadas. 
+#Indique a pasta do seu computador em que as variÃ¡veis se encontram.
 
 myExpl <- stack ("C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio04.asc",
                  "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio05.asc",
@@ -29,24 +29,24 @@ myBiomodData <- BIOMOD_FormatingData(resp.var = myResp,
                                      resp.xy = myRespXY,
                                      resp.name = myRespName,
                                      PA.nb.rep = 1,
-                                     PA.nb.absences = 5000,
+                                     PA.nb.absences = 10000,
                                      PA.strategy = 'random',
                                      PA.table = NULL,
                                      na.rm = TRUE)
 
 
-########################## DEFININDO CONFIGURAÇÕES DOS ALGORITMOS #####################################
+########################## DEFININDO CONFIGURAÃ‡Ã•ES DOS ALGORITMOS #####################################
 
 myBiomodOptions <- BIOMOD_ModelingOptions()
 
 
 
 ############################################### MODELAGEM ###############################################################
-#### models = Algorítimos que serão utilizados na modelagem, cada um tem suas especificidaes. TÔRRES, N. M., 2010. explica alguns 
-#### NbRunEval = Número de repetições dos testes de avaliação dos modelos
-#### DataSplit = porcentagem de dados que serão usados para calibrar o modelo, o restante será usado para a avaliação
-#### models.eval.meth = Modelos estatísticos usados para avaliar a modelagem, "ROC" é o mais utilizado, mas existem outros (TSS, por ex.).
-####VarImport = Número de repetições para testar a importância de cada variável no modelo
+#### models = AlgorÃ­timos que serÃ£o utilizados na modelagem, cada um tem suas especificidaes. TÃ”RRES, N. M., 2010. explica alguns 
+#### NbRunEval = NÃºmero de repetiÃ§Ãµes dos testes de avaliaÃ§Ã£o dos modelos
+#### DataSplit = porcentagem de dados que serÃ£o usados para calibrar o modelo, o restante serÃ¡ usado para a avaliaÃ§Ã£o
+#### models.eval.meth = Modelos estatÃ­sticos usados para avaliar a modelagem, "ROC" Ã© o mais utilizado, mas existem outros (TSS, por ex.).
+####VarImport = NÃºmero de repetiÃ§Ãµes para testar a importÃ¢ncia de cada variÃ¡vel no modelo
 
 myBiomodModelOut <- BIOMOD_Modeling( myBiomodData, 
                                      models = c('MAXENT.Phillips','GBM', 'RF'), 
@@ -86,9 +86,9 @@ myBiomodEM <- BIOMOD_EnsembleModeling( modeling.output = myBiomodModelOut,
 get_evaluations(myBiomodEM)
 
 ########################################## PROJETANDO OS MODELOS INDIVIDUAIS ################################################# 		
-#### Antes de obter a projeção consenso dos algorItmos, é necessário projetar os modelos individuais
-#### new.env = variáveis ambientais em que os modelos serão projetados, é possível por ex. modelar para America do Sul e projetar só para SC. Depende da intenção do pesquisador.
-#### ao deixar "new.env = myExpl" vc estará usando as variáveis ambientais selecionadas no começo, e é com base nelas que os modelos serão projetadas. 
+#### Antes de obter a projeÃ§Ã£o consenso dos algorItmos, Ã© necessÃ¡rio projetar os modelos individuais
+#### new.env = variÃ¡veis ambientais em que os modelos serÃ£o projetados, Ã© possÃ­vel por ex. modelar para America do Sul e projetar sÃ³ para SC. Depende da intenÃ§Ã£o do pesquisador.
+#### ao deixar "new.env = myExpl" vc estarÃ¡ usando as variÃ¡veis ambientais selecionadas no comeÃ§o, e Ã© com base nelas que os modelos serÃ£o projetadas. 
 
 
 myBiomodProjection <- BIOMOD_Projection(modeling.output = myBiomodModelOut,
@@ -100,7 +100,7 @@ myBiomodProjection <- BIOMOD_Projection(modeling.output = myBiomodModelOut,
                                         build.clamping.mask = FALSE)
 
 
-############################################### UNINDO AS PROJEÇÕES #############################################################
+############################################### UNINDO AS PROJEÃ‡Ã•ES #############################################################
 
 mybiomodEF <- BIOMOD_EnsembleForecasting( projection.output = myBiomodProjection,
                               EM.output = myBiomodEM)
