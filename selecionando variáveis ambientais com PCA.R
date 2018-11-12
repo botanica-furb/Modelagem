@@ -3,19 +3,19 @@ install.packages("ecospat")
 library(biomod2)
 library(ecospat)
 
-#antes de começar, importe seus dados de ocorrência em ".csv", sendo:
-# Uma coluna "id" com números que identifiquem seus pontos
+#antes de comeÃ§ar, importe seus dados de ocorrÃªncia em ".csv", sendo:
+# Uma coluna "id" com nÃºmeros que identifiquem seus pontos
 # Uma coluna "x" com longitudes e outra "y" com latitudes
-# Uma coluna indicando a presença da espécie (1) em cada coordenada.
+# Uma coluna indicando a presenÃ§a da espÃ©cie (1) em cada coordenada.
 
 DataSpecies <- Dicksonia.sellowiana #Nome do arquivo csv importado
-myRespName <- 'Dsellowiana'          #Título da coluna que indica a presença da espécie em cada coordenada
+myRespName <- 'Dsellowiana'          #TÃ­tulo da coluna que indica a presenÃ§a da espÃ©cie em cada coordenada
 myResp <- as.numeric(DataSpecies[,myRespName])
-myRespXY <- DataSpecies[,c("x","y")]            #"x" e "y" correspondem aos títulos das colunas longitude e latitude, respectivamente
+myRespXY <- DataSpecies[,c("x","y")]            #"x" e "y" correspondem aos tÃ­tulos das colunas longitude e latitude, respectivamente
 
 
-#Importando as varáveis ambientais que serão analisadas. As 19 do world clim por ex.
-#Indique a pasta do seu computador em que as variáveis se encontram.
+#Importando as varÃ¡veis ambientais que serÃ£o analisadas. As 19 do world clim por ex.
+#Indique a pasta do seu computador em que as variÃ¡veis se encontram.
 
 myExpl <- stack ("C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio01.asc",
                  "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio02.asc",
@@ -49,23 +49,23 @@ myBiomodData <- BIOMOD_FormatingData(resp.var = myResp,
                                      na.rm = TRUE)
 
 
-# se nenhum erro ocorreu, os valores ambientais foram extraídos
+# se nenhum erro ocorreu, os valores ambientais foram extraÃ­dos
 valoresAMB <- myBiomodData@data.env.var
 
 
 
-#Calculando a correlação:
-# será gerado uma tabela com a correlação entre as variáveis, exporte-a como pdf que ficará melhor para vizualizar os dados
+#Calculando a correlaÃ§Ã£o:
+
 
 data <- valoresAMB[,1:19]  # 1:19=intervalo de colunas contendo valores ambientais
-ecospat.cor.plot(data)      
+ecospat.cor.plot(data)     # serÃ¡ gerado uma tabela com a correlaÃ§Ã£o entre as variÃ¡veis, exporte-a como pdf que ficarÃ¡ melhor para vizualizar os dados 
 
 #Analisando os eixos da PCA
 
 pca.env<-dudi.pca(rbind(valoresAMB)[,1:19],scannf=FALSE,nf=2)
-pca.env[["co"]]     #será gerada uma tabela com a variação de cada uma das variáveis em cada eixo
+pca.env[["co"]]     #serÃ¡ gerada uma tabela com a variaÃ§Ã£o de cada uma das variÃ¡veis em cada eixo
 
-# escolha as variáveis com maior pontuação no eixo 1, depois no eixo 2, sempre analisando o pdf gerado anteriormente para saber a correlação entre as variáveis escolhidas
-# variáveis com mais de 75% de correlação entre si não podem ser utilizadas, nesse caso, escolha a de maior contribuição nos eixos
+# escolha as variÃ¡veis com maior pontuaÃ§Ã£o no eixo 1, depois no eixo 2, sempre analisando o pdf gerado anteriormente para saber a correlaÃ§Ã£o entre as variÃ¡veis escolhidas
+# variÃ¡veis com mais de 75% de correlaÃ§Ã£o entre si nÃ£o podem ser utilizadas, nesse caso, escolha a de maior contribuiÃ§Ã£o nos eixos
 
 ecospat.plot.contrib(contrib=pca.env$co, eigen=pca.env$eig)
