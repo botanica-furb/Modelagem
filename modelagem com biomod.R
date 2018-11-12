@@ -60,8 +60,8 @@ myBiomodModelOut <- BIOMOD_Modeling( myBiomodData,
                                      modeling.id="modelo1")
 
 
-get_evaluations(myBiomodModelOut)
-get_variables_importance(myBiomodModelOut)
+get_evaluations(myBiomodModelOut) # Avaliações estatísticas por algoritmo
+get_variables_importance(myBiomodModelOut) # Importância das variáveis
 
 
 ######################################### UNINDO OS MODELOS ######################################################
@@ -83,7 +83,7 @@ myBiomodEM <- BIOMOD_EnsembleModeling( modeling.output = myBiomodModelOut,
                                        prob.mean.weight.decay = 'proportional' ) 
 
 
-get_evaluations(myBiomodEM)
+get_evaluations(myBiomodEM) # Avaliação estatística modelo consenso
 
 ########################################## PROJETANDO OS MODELOS INDIVIDUAIS ################################################# 		
 #### Antes de obter a projeção consenso dos algorItmos, é necessário projetar os modelos individuais
@@ -93,7 +93,7 @@ get_evaluations(myBiomodEM)
 
 myBiomodProjection <- BIOMOD_Projection(modeling.output = myBiomodModelOut,
                                         new.env = myExpl,
-                                        proj.name = 'currentFINAL',
+                                        proj.name = 'current',
                                         selected.models = 'all',
                                         binary.meth = NULL,
                                         compress = FALSE,
@@ -106,6 +106,7 @@ mybiomodEF <- BIOMOD_EnsembleForecasting( projection.output = myBiomodProjection
                               EM.output = myBiomodEM)
 
 
+# Um arquivo ".grd" será gerado na pasta do R com a distribuição da espécie, da seguinte forma: "nomedoprojeto_ensemble_nomedasp.grd" 
 
 
 
