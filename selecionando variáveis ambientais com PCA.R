@@ -17,25 +17,26 @@ myRespXY <- DataSpecies[,c("x","y")]            #"x" e "y" correspondem aos tít
 #Importando as varáveis ambientais que serão analisadas. As 19 do world clim por ex.
 #Indique a pasta do seu computador em que as variáveis se encontram.
 
-myExpl <- stack ("C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio01.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio02.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio03.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio04.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio05.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio06.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio07.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio08.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio09.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio10.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio11.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio12.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio13.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio14.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio15.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio16.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio17.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio18.asc",
-                 "C:/Users/chrussi/OneDrive/Faculdade/Mudancas climaticas/camadas/current/bio19.asc")
+myExpl <- stack ("C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio01.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio02.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio03.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio04.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio05.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio06.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio07.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio08.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio09.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio10.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio11.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio12.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio13.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio14.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio15.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio16.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio17.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio18.asc",
+                 "C:/Users/chrussi/OneDrive/Faculdade/camadas/current/bio19.asc")
+                
 
 
 myBiomodData <- BIOMOD_FormatingData(resp.var = myResp,
