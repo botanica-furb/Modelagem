@@ -1,7 +1,5 @@
 install.packages("biomod2")
-install.packages("ecospat")
 library(biomod2)
-library(ecospat)
 
 #antes de começar, importe seus dados de ocorrência em ".csv", sendo:
 # Uma coluna "id" com números que identifiquem seus pontos
