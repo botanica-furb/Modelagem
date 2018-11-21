@@ -1,4 +1,4 @@
-# Script derivado do pacote Biomod2
+# Script derivado do pacote Biomod2, por Carlos H. Russi.
 install.packages("biomod2")
 library(biomod2)
 
