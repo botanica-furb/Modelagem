@@ -1,3 +1,4 @@
+# Script derivado do pacote Biomod2
 install.packages("biomod2")
 library(biomod2)
 
