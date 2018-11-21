@@ -1,3 +1,5 @@
+# Script derivado dos pacotes Biomod2 e Ecospat, por Carlos H. Russi.
+
 install.packages("biomod2")
 install.packages("ecospat")
 library(biomod2)
