@@ -1,0 +1,12 @@
+library(ecospat)
+
+Data <- Alsophila.capensis	# nome do arquivo .csv
+
+x <- Data$x	 # coluna contendo os dados de longitude em graus decimais
+y <- Data$y	 # coluna contendo os dados de latitude em graus decimais
+
+sp <- data.frame(x,y)
+
+sp1 <- ecospat.occ.desaggregation(sp, min.dist = 0.35) # Distância mínima entre pontos (tbm em graus decimais)
+
+write.csv(sp1, "pbil.csv") # será gerado um novo .csv (desagregado) no diretório R
