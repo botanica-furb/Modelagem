@@ -7,6 +7,6 @@ y <- Data$y	 # coluna contendo os dados de latitude em graus decimais
 
 sp <- data.frame(x,y)
 
-sp1 <- ecospat.occ.desaggregation(sp, min.dist = 0.35) # Distância mínima entre pontos (tbm em graus decimais)
+sp1 <- ecospat.occ.desaggregation(sp, min.dist = 0.1) # DistÃ¢ncia mÃ­nima entre pontos (tbm em graus decimais)
 
-write.csv(sp1, "pbil.csv") # será gerado um novo .csv (desagregado) no diretório R
+write.csv(sp1, "Alsophila capensis.csv") # serÃ¡ gerado um novo .csv (desagregado) no diretÃ³rio R
